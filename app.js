@@ -57,6 +57,33 @@ app.get('/restaurants/:id', (req, res) => {
 
 
 
+// 刪除餐廳
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    restaurant.remove(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+  })
+})
+
+
+// search bar
+app.get('/search', (req, res) => {
+  console.log('req==>', req.query)//查看keyword
+  const restaurantSearch = restaurantList.results.filter(function (restaurant) {
+    return restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase())
+  })
+  console.log(restaurantSearch)
+
+  res.render('index', { restaurantList: restaurantSearch, keyword: req.query.keyword, css: 'index.css' })
+})
+
+
+
+
+
 app.listen(port, () => {
   console.log(`web on ${port}`)
 })
