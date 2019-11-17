@@ -72,12 +72,16 @@ app.post('/restaurants/:id/delete', (req, res) => {
 // search bar
 app.get('/search', (req, res) => {
   console.log('req==>', req.query)//查看keyword
-  const restaurantSearch = restaurantList.results.filter(function (restaurant) {
-    return restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase())
+  Restaurant.find((err, restaurants) => {
+    const restaurantSearch = restaurants.filter(function (restaurant) {
+      return restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase())
+    })
+    // console.log(restaurantSearch) 
+    // console.log("todoList!!", restaurants)
+    if (err) return console.error(err)
+    return res.render('index', { restaurants: restaurantSearch, keyword: req.query.keyword, css: 'index.css' })
+    // return res.send('restaurant=>index')
   })
-  console.log(restaurantSearch)
-
-  res.render('index', { restaurantList: restaurantSearch, keyword: req.query.keyword, css: 'index.css' })
 })
 
 
