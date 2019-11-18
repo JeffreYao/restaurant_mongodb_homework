@@ -78,7 +78,7 @@ app.post('/restaurants/:id/delete', (req, res) => {
 })
 
 
-// search bar
+// search bar搜尋功能
 app.get('/search', (req, res) => {
   // console.log('req==>', req.query)//查看keyword
   Restaurant.find((err, restaurants) => {
@@ -110,18 +110,18 @@ app.get('/search', (req, res) => {
 
 // 修改餐廳 頁面
 app.post('/restaurants/:id/edit', (req, res) => {
-  console.log(req.body.name)
+  console.log(req.body)
   // res.send('修改餐廳 頁面')
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.name = req.body.name
-    // restaurant.category = req.body.category
-    // restaurant.image = req.body.image
-    // restaurant.location = req.body.location
-    // restaurant.phone = req.body.phone
-    // restaurant.google_map = req.body.google_map
-    // restaurant.rating = req.body.rating
-    // restaurant.description = req.body.description
+    restaurant.category = req.body.category
+    restaurant.image = req.body.image
+    restaurant.location = req.body.location
+    restaurant.phone = req.body.phone
+    restaurant.google_map = req.body.google_map
+    restaurant.rating = req.body.rating
+    restaurant.description = req.body.description
 
     console.log("findbyid", restaurant.name)
     restaurant.save((err) => {
