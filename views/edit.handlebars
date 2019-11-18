@@ -1,0 +1,69 @@
+<h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 mx-auto">
+
+      <form action="/restaurants/{{restaurant.id}}/edit" method="POST">
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-utensils pr-2"></i>
+            餐廳名稱：
+          </span>
+          <input type="text" name="name" value="{{restaurant.name}}" placeholder="name">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-utensils pr-2"></i>
+            類別：
+          </span>
+          <input type="text" name="category" value="{{restaurant.category}}" placeholder="category">
+        </p>
+
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-map-marker-alt pr-2"></i>
+            地址：
+          </span>
+          <input type="text" name="location" value="{{restaurant.location}}" placeholder="location">
+        </p>
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-utensils pr-2"></i>
+            google_map網址：
+          </span>
+          <input type="text" name="google_map" value="{{restaurant.google_map}}" placeholder="google_map">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-mobile-alt pr-2"></i>
+            電話：
+          </span>
+          <input type="text" name="phone" value="{{restaurant.phone}}" placeholder="phone">
+        </p>
+
+        <p class="mb-1">
+          <i class="fas fa-mobile-alt pr-2"></i>
+          <span class="text-secondary">
+            餐廳描述：
+          </span>
+          <input type="text" name="description" value="{{restaurant.description}}" placeholder="description">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            <i class="fas fa-mobile-alt pr-2"></i>
+            圖片網址：
+          </span>
+          <input type="text" name="image" value="{{restaurant.image}}" placeholder="image">
+        </p>
+
+        <button type="submit">Save</button>
+      </form>
+
+      <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
+        style="max-width: 600px;">
+    </div>
+  </div>
+</div>
