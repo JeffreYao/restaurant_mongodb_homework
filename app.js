@@ -47,6 +47,11 @@ app.get('/restaurants', (req, res) => {
   return res.redirect('/')
 })
 
+// // 新增餐廳 頁面
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new', { css: 'detail.css' })
+})
+
 // 顯示一筆餐廳的詳細內容
 app.get('/restaurants/:id', (req, res) => {
   // res.send('顯示Todo 的詳細內容')
@@ -58,7 +63,7 @@ app.get('/restaurants/:id', (req, res) => {
 
 // 修改餐廳 頁面
 app.get('/restaurants/:id/edit', (req, res) => {
-  // res.send('修改 Todo 頁面')
+  // res.send('修改餐廳 頁面')
   Restaurant.findById(req.params.id, (err, restaurant) => {
     return res.render('edit', { restaurant, css: 'detail.css' })
   })
@@ -93,20 +98,28 @@ app.get('/search', (req, res) => {
   })
 })
 
-// // 修改餐廳 頁面
-// app.post('/restaurants/:id/edit', (req, res) => {
-//   console.log(req.body.category)
-//   // res.send('修改餐廳 頁面')
-//   Restaurant.findById(req.params.id, (err, restaurant) => {
-//     restaurant.category = req.body.category
 
-//     Restaurant.save((err) => {
-//       if (err) return console.error(err)
-//       return res.redirect(`/restaurants/${req.params.id}`)
 
-//     })
-//   })
-// })
+
+
+// 新增一筆餐廳
+app.post('/restaurants/new', (req, res) => {
+  const restaurant = new Restaurant({
+    name: req.body.name,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description,
+  })
+  console.log(restaurant)
+  restaurant.save(err => {
+    if (err) return console.error(err)
+    return res.redirect('/')  // 新增完成後，將使用者導回首頁
+  })
+})
 
 // 修改餐廳 頁面
 app.post('/restaurants/:id/edit', (req, res) => {
