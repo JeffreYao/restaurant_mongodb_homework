@@ -40,5 +40,5 @@ for `windows` , `MacOS`
 - 可執行建立種子檔:)
 
 # web page
-![webpage](https://github.com/JeffreYao/trash_talk_generator/blob/master/trash_talk.jpg?raw=true)
+![webpage](https://github.com/JeffreYao/restaurant_mongodb_homework/blob/master/restaurant_DB_homework.jpg?raw=true)
 
